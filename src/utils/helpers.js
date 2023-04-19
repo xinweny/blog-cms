@@ -1,4 +1,5 @@
 import { format, parseISO } from 'date-fns';
+import DOMPurify from 'dompurify';
 
 const sendReq = async (verb, query, data, token) => {
   const res = await fetch(`https://blog-api-5lv9.onrender.com/api/${query}`, {
@@ -27,9 +28,14 @@ const getStorageAuth = () => ({
 
 const formatDate = (date, formatString) => format(parseISO(date), formatString);
 
+const sanitize = htmlString => DOMPurify.sanitize(htmlString, {
+  USE_PROFILES: { html: true }
+});
+
 export {
   sendReq,
   saveDataAndTriggerStorage,
   getStorageAuth,
   formatDate,
+  sanitize,
 };

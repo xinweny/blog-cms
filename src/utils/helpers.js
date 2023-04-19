@@ -1,3 +1,5 @@
+import { format, parseISO } from 'date-fns';
+
 const sendReq = async (verb, query, data, token) => {
   const res = await fetch(`https://blog-api-5lv9.onrender.com/api/${query}`, {
     method: verb,
@@ -23,8 +25,11 @@ const getStorageAuth = () => ({
   token: localStorage.getItem('token'),
 });
 
+const formatDate = (date, formatString) => format(parseISO(date), formatString);
+
 export {
   sendReq,
   saveDataAndTriggerStorage,
   getStorageAuth,
+  formatDate,
 };

@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 
 import { formatDate } from '../../utils/helpers';
 
-function PostCard({ post }) {
+import TogglePublishButton from './TogglePublishButton';
+
+function PostCard({ post, setPosts }) {
   return (
     <div>
       <p>{post.title}</p>
@@ -13,6 +15,7 @@ function PostCard({ post }) {
       <p>L{post.likesCount}</p>
       <p>C{post.commentsCount}</p>
       <Link to={`posts/${post._id}/edit`}>Edit</Link>
+      <TogglePublishButton postId={post._id} published={post.published} setPosts={setPosts} />
     </div>
   );
 }
@@ -26,6 +29,7 @@ PostCard.propTypes = {
     likesCount: PT.number.isRequired,
     commentsCount: PT.number.isRequired,
   }),
+  setPosts: PT.func.isRequired,
 };
 
 export default PostCard;

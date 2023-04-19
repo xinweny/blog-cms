@@ -2,9 +2,10 @@ import React, { useRef, useState } from 'react';
 import { PropTypes as PT } from 'prop-types';
 import { Editor } from '@tinymce/tinymce-react';
 import { useNavigate } from 'react-router-dom';
+import parse from 'html-react-parser';
 
 import tinymceConfig from '../../config/tinyMCE';
-import { sendReq, getStorageAuth } from '../../utils/helpers';
+import { sendReq, getStorageAuth, sanitize } from '../../utils/helpers';
 
 function PostForm({ post }) {
   const editorRef = useRef(null);
@@ -12,7 +13,7 @@ function PostForm({ post }) {
   const { user, token } = getStorageAuth();
 
   const [title, setTitle] = useState(post ? post.title : '');
-  const [text, setText] = useState(post);
+  const [text, setText] = useState(post ? post.text : '');
   const [tags, setTags] = useState(post ? post.tags : []);
   const [published, setPublished] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -71,7 +72,7 @@ function PostForm({ post }) {
         apiKey={process.env.REACT_APP_TINYMCE_API_KEY}
         onInit={(e, editor) => editorRef.current = editor}
         init={tinymceConfig}
-        value={text}
+        value={parse(sanitize(text))}
         onEditorChange={handleChange}
         required
       />

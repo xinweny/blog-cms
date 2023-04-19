@@ -9,12 +9,12 @@ import PostCard from '../components/ui/PostCard';
 function DashboardPage() {
   const { user } = getStorageAuth();
   
-  const [posts] = useFetch(`users/${user.id}/posts`, []);
+  const [posts] = useFetch(`posts?author=${user.id}`, []);
 
   return (
     <main>
       <SideNav />
-      <h3>Articles</h3>
+      <h3>Articles ({posts.length})</h3>
       {posts.length > 0
         ? posts.map(post => (
           <PostCard key={post._id} post={post} />

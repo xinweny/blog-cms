@@ -69,10 +69,10 @@ function SignupPage() {
           type="password" name="password" id="password" required
           onChange={e => setPassword(e.target.value)}
         />
-        <label htmlFor="confirm_password">Password</label>
         <input
           type="password" name="confirm_password" id="confirm_password" required
           onChange={e => setConfirmPassword(e.target.value)}
+          placeholder="Confirm password"
         />
         <button type="submit">Submit</button>
       </form>

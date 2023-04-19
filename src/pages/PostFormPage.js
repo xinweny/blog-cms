@@ -9,6 +9,8 @@ function PostFormPage() {
   const { id } = useParams();
   const post = id ? useFetch(`posts/${id}`)[0] : null;
 
+  if (!post) return null;
+
   return (
     <main>
       <h2>{post ? 'Edit' : 'Create'} Post</h2>

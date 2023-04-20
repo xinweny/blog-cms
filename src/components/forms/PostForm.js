@@ -14,7 +14,7 @@ function PostForm({ post }) {
   const [title, setTitle] = useState(post ? post.title : '');
   const [text, setText] = useState(post ? post.text : '');
   const [tags, setTags] = useState(post ? post.tags : []);
-  const [published, setPublished] = useState(false);
+  const [published, setPublished] = useState(post ? post.published : false);
   const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
@@ -117,6 +117,7 @@ PostForm.propTypes = {
     title: PT.string.isRequired,
     text: PT.string.isRequired,
     tags: PT.arrayOf(PT.string),
+    published: PT.bool.isRequired,
   }),
 };
 

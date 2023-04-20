@@ -9,7 +9,7 @@ function PostFormPage() {
   const { id } = useParams();
   const post = id ? useFetch(`posts/${id}`)[0] : null;
 
-  if (!post) return null;
+  if (id && !post) return null;
 
   return (
     <main>

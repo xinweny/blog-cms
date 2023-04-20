@@ -10,12 +10,13 @@ function PostCard({ post, setPosts }) {
   return (
     <div>
       <p>{post.title}</p>
-      <p>{formatDate(post.createdAt, 'd MMM Y')}</p>
+      <p>Created {formatDate(post.createdAt, 'd MMM Y h:mm a')}</p>
+      {post.updatedAt ? <p>Last modified {formatDate(post.updatedAt, 'd MMM Y h:mm a')}</p> : null}
       <p>{post.published ? 'Published' : 'Unpublished'}</p>
       <p>L{post.likesCount}</p>
       <p>C{post.commentsCount}</p>
       <Link to={`posts/${post._id}/edit`}>Edit</Link>
-      <TogglePublishButton postId={post._id} published={post.published} setPosts={setPosts} />
+      <TogglePublishButton post={post} setPosts={setPosts} />
     </div>
   );
 }
@@ -25,6 +26,7 @@ PostCard.propTypes = {
     _id: PT.string.isRequired,
     title: PT.string.isRequired,
     createdAt: PT.string.isRequired,
+    updatedAt: PT.string,
     published: PT.bool.isRequired,
     likesCount: PT.number.isRequired,
     commentsCount: PT.number.isRequired,

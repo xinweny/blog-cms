@@ -1,11 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { PropTypes as PT } from 'prop-types';
 import { Editor } from '@tinymce/tinymce-react';
 import { useNavigate } from 'react-router-dom';
-import parse from 'html-react-parser';
 
 import tinymceConfig from '../../config/tinyMCE';
-import { sendReq, getStorageAuth, sanitize } from '../../utils/helpers';
+import { sendReq, getStorageAuth } from '../../utils/helpers';
 
 function PostForm({ post }) {
   const editorRef = useRef(null);
@@ -18,9 +17,21 @@ function PostForm({ post }) {
   const [published, setPublished] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
+  useEffect(() => {
+    if (text) {
+      const parser = new DOMParser();
+      const decodedString = parser.parseFromString(`<!doctype html><body>${text}`, 'text/html').body.textContent;
+
+      setText(decodedString);
+    }
+  }, []);
+
   const navigate = useNavigate();
 
-  const handleChange = content => setText(content);
+  const handleChange = content => {
+    console.log(content);
+    setText(content);
+  };
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -30,14 +41,18 @@ function PostForm({ post }) {
         return;
       }
 
+      const data = { author: user._id, title, text, tags, published }
+
+      if (post) {
+        data.updatedAt = new Date();
+      } else {
+        data.createdAt = new Date();
+      }
+
       const res = await sendReq(
         post ? 'PUT' : 'POST',
         post ? `posts/${post._id}` : 'posts',
-        {
-          author: user._id,
-          title, text, tags, published,
-          createdAt: new Date(),
-        },
+        data,
         token,
       );
 
@@ -72,7 +87,7 @@ function PostForm({ post }) {
         apiKey={process.env.REACT_APP_TINYMCE_API_KEY}
         onInit={(e, editor) => editorRef.current = editor}
         init={tinymceConfig}
-        value={parse(sanitize(text))}
+        value={text}
         onEditorChange={handleChange}
         required
       />

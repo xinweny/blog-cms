@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { formatDate } from '../../utils/helpers';
 
 import TogglePublishButton from './TogglePublishButton';
-import DeletePostButton from './DeletePostButton';
+import DeleteButton from './DeleteButton';
 
 function PostCard({ post, setPosts }) {
   return (
@@ -18,7 +18,7 @@ function PostCard({ post, setPosts }) {
       <p>C{post.commentsCount}</p>
       <Link to={`posts/${post._id}/edit`}>Edit</Link>
       <TogglePublishButton post={post} setPosts={setPosts} />
-      <DeletePostButton postId={post._id} setPosts={setPosts} />
+      <DeleteButton endpoint={'posts'} itemId={post._id} setItems={setPosts} />
     </div>
   );
 }

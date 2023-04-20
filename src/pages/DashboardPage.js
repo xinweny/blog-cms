@@ -4,6 +4,7 @@ import { getStorageAuth } from '../utils/helpers';
 
 import SideNav from '../components/ui/SideNav';
 import PostWidget from '../components/ui/PostWidget';
+import CommentWidget from '../components/ui/CommentWidget';
 
 function DashboardPage() {
   const { user } = getStorageAuth();
@@ -12,7 +13,7 @@ function DashboardPage() {
     <main>
       <SideNav />
       <PostWidget userId={user.id} />
-      <h3>Comments</h3>
+      <CommentWidget userId={user.id} />
     </main>
   );
 }

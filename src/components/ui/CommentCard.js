@@ -13,7 +13,9 @@ function CommentCard({ comment, setComments }) {
   return (
     <div>
       <p>{comment.text}</p>
-      <p>{comment.post.title}</p>
+      <a href={`https://BLOGCLIENTTBD/posts/${comment.post._id}`}>
+        <p>{comment.post.title}</p>
+      </a>
       <p>{formatDate(comment.createdAt, 'dd MMM Y hh:mm a')}</p>
       <DeleteButton endpoint={'comments'} itemId={comment._id} setItems={setComments} setModalOptions={setModalOptions} />
       <WarningModal options={modalOptions} setOptions={setModalOptions} message="Delete Comment?" />
@@ -24,7 +26,10 @@ function CommentCard({ comment, setComments }) {
 CommentCard.propTypes = {
   comment: PT.shape({
     _id: PT.string.isRequired,
-    post: PT.shape({ title: PT.string.isRequired }),
+    post: PT.shape({
+      _id: PT.string.isRequired,
+      title: PT.string.isRequired,
+    }),
     text: PT.string.isRequired,
     createdAt: PT.string.isRequired,
   }),

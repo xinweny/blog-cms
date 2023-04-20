@@ -14,7 +14,10 @@ function PostCard({ post, setPosts }) {
 
   return (
     <div>
-      <p>{post.title}</p>
+      {post.published
+        ? <a href={`https://BLOGCLIENTTBD/posts/${post._id}`}>
+          <p>{post.title}</p>
+        </a> : <p>{post.title}</p>}
       <p>Created {formatDate(post.createdAt, 'd MMM Y h:mm a')}</p>
       {post.updatedAt ? <p>Last modified {formatDate(post.updatedAt, 'd MMM Y h:mm a')}</p> : null}
       <p>{post.published ? 'Published' : 'Unpublished'}</p>

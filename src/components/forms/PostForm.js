@@ -29,7 +29,6 @@ function PostForm({ post }) {
   const navigate = useNavigate();
 
   const handleChange = content => {
-    console.log(content);
     setText(content);
   };
 

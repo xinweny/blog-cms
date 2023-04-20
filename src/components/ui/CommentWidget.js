@@ -6,7 +6,7 @@ import useFetch from '../../hooks/useFetch';
 import CommentCard from './CommentCard';
 
 function CommentWidget({ userId }) {
-  const [comments, setComments] = useFetch(`comments?author=${userId}&showPost=true`, []);
+  const [comments, setComments] = useFetch(`comments?author=${userId}&showPost=true&createdAt=desc`, []);
 
   return (
     <div>

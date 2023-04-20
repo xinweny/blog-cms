@@ -4,7 +4,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import { useNavigate } from 'react-router-dom';
 
 import tinymceConfig from '../../config/tinyMCE';
-import { sendReq, getStorageAuth } from '../../utils/helpers';
+import { sendReq, getStorageAuth, sanitize } from '../../utils/helpers';
 
 function PostForm({ post }) {
   const editorRef = useRef(null);
@@ -12,15 +12,15 @@ function PostForm({ post }) {
   const { user, token } = getStorageAuth();
 
   const [title, setTitle] = useState(post ? post.title : '');
-  const [text, setText] = useState(post ? post.text : '');
+  const [text, setText] = useState('');
   const [tags, setTags] = useState(post ? post.tags : []);
   const [published, setPublished] = useState(post ? post.published : false);
   const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
-    if (text) {
+    if (post) {
       const parser = new DOMParser();
-      const decodedString = parser.parseFromString(`<!doctype html><body>${text}`, 'text/html').body.textContent;
+      const decodedString = parser.parseFromString(post.text, 'text/html').body.textContent;
 
       setText(decodedString);
     }
@@ -29,7 +29,7 @@ function PostForm({ post }) {
   const navigate = useNavigate();
 
   const handleChange = content => {
-    setText(content);
+    setText(sanitize(content));
   };
 
   const handleSubmit = async e => {

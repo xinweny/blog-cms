@@ -16,7 +16,7 @@ function Header() {
           <h1>BlogTree CMS</h1>
         </div>
       </Link>
-      {user ? <Link to={`/users/${user.id}`}>{user.username}</Link> : null}
+      {user ? <p>{user.username}</p> : null}
       <NavBar user={user} />
     </header>
   );

@@ -105,7 +105,7 @@ function PostForm({ post }) {
         checked={published}
         onChange={() => setPublished(prev => !prev)}
       />
-      <button type="Submit">{post ? 'Update' : 'Create' }</button>
+      <button type="Submit">{post ? 'Save' : 'Create' }</button>
     </form>
   );
 }

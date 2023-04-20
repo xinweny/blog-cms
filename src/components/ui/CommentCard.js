@@ -1,17 +1,22 @@
 import React from 'react';
 import { PropTypes as PT } from 'prop-types';
 
+import useModal from '../../hooks/useModal';
 import { formatDate } from '../../utils/helpers';
 
 import DeleteButton from './DeleteButton';
+import WarningModal from './WarningModal';
 
 function CommentCard({ comment, setComments }) {
+  const [modalOptions, setModalOptions] = useModal();
+
   return (
     <div>
       <p>{comment.text}</p>
       <p>{comment.post.title}</p>
       <p>{formatDate(comment.createdAt, 'dd MMM Y hh:mm a')}</p>
-      <DeleteButton endpoint={'comments'} itemId={comment._id} setItems={setComments} />
+      <DeleteButton endpoint={'comments'} itemId={comment._id} setItems={setComments} setModalOptions={setModalOptions} />
+      <WarningModal options={modalOptions} setOptions={setModalOptions} message="Delete Comment?" />
     </div>
   );
 }

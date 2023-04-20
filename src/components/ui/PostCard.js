@@ -2,12 +2,16 @@ import React from 'react';
 import { PropTypes as PT } from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import useModal from '../../hooks/useModal';
 import { formatDate } from '../../utils/helpers';
 
 import TogglePublishButton from './TogglePublishButton';
 import DeleteButton from './DeleteButton';
+import WarningModal from './WarningModal';
 
 function PostCard({ post, setPosts }) {
+  const [modalOptions, setModalOptions] = useModal();
+
   return (
     <div>
       <p>{post.title}</p>
@@ -18,7 +22,8 @@ function PostCard({ post, setPosts }) {
       <p>C{post.commentsCount}</p>
       <Link to={`posts/${post._id}/edit`}>Edit</Link>
       <TogglePublishButton post={post} setPosts={setPosts} />
-      <DeleteButton endpoint={'posts'} itemId={post._id} setItems={setPosts} />
+      <DeleteButton endpoint={'posts'} itemId={post._id} setItems={setPosts} setModalOptions={setModalOptions} />
+      <WarningModal options={modalOptions} setOptions={setModalOptions} message="Delete Post?" />
     </div>
   );
 }

@@ -3,7 +3,12 @@ import { PropTypes as PT } from 'prop-types';
 
 import { sendReq, getStorageAuth } from '../../utils/helpers';
 
-function DeleteCommentButton({ endpoint, itemId, setItems }) {
+function DeleteButton({
+  endpoint,
+  itemId,
+  setItems,
+  setModalOptions,
+}) {
   const { token } = getStorageAuth();
 
   const handleDelete = async () => {
@@ -19,14 +24,18 @@ function DeleteCommentButton({ endpoint, itemId, setItems }) {
   };
 
   return (
-    <button onClick={handleDelete}>Delete</button>
+    <button onClick={() => setModalOptions({
+      show: true,
+      action: handleDelete,
+    })}>Delete</button>
   );
 }
 
-DeleteCommentButton.propTypes = {
+DeleteButton.propTypes = {
   endpoint: PT.string.isRequired,
   itemId: PT.string.isRequired,
   setItems: PT.func.isRequired,
+  setModalOptions: PT.func.isRequired,
 };
 
-export default DeleteCommentButton;
+export default DeleteButton;

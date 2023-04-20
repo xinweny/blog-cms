@@ -12,10 +12,8 @@ function PostWidget({ userId }) {
   const [unpublished, setUnpublished] = useState([]);
 
   useEffect(() => {
-    if (posts.length > 0) {
-      setPublished(posts.filter(post => post.published));
-      setUnpublished(posts.filter(post => !post.published));
-    }
+    setPublished(posts.filter(post => post.published));
+    setUnpublished(posts.filter(post => !post.published));
   }, [posts]);
 
   return (

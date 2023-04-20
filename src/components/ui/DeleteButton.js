@@ -3,15 +3,15 @@ import { PropTypes as PT } from 'prop-types';
 
 import { sendReq, getStorageAuth } from '../../utils/helpers';
 
-function DeletePostButton({ postId, setPosts }) {
+function DeleteCommentButton({ endpoint, itemId, setItems }) {
   const { token } = getStorageAuth();
 
   const handleDelete = async () => {
     try {
-      const res = await sendReq('DELETE', `posts/${postId}`, {}, token);
+      const res = await sendReq('DELETE', `${endpoint}/${itemId}`, {}, token);
 
       if (res.status === 200) {
-        setPosts(prev => prev.filter(post => post._id !== postId));
+        setItems(prev => prev.filter(item => item._id !== itemId));
       }
     } catch (err) {
       console.log(err);
@@ -23,9 +23,10 @@ function DeletePostButton({ postId, setPosts }) {
   );
 }
 
-DeletePostButton.propTypes = {
-  postId: PT.string.isRequired,
-  setPosts: PT.func.isRequired,
+DeleteCommentButton.propTypes = {
+  endpoint: PT.string.isRequired,
+  itemId: PT.string.isRequired,
+  setItems: PT.func.isRequired,
 };
 
-export default DeletePostButton;
+export default DeleteCommentButton;

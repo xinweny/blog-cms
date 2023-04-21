@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PropTypes as PT } from 'prop-types';
 
 import useModal from '../../hooks/useModal';
@@ -6,8 +6,11 @@ import { formatDate } from '../../utils/helpers';
 
 import DeleteButton from './DeleteButton';
 import WarningModal from './WarningModal';
+import CommentForm from '../forms/CommentForm';
 
 function CommentCard({ comment, setComments }) {
+  const [showEditForm, setShowEditForm] = useState(false);
+
   const [modalOptions, setModalOptions] = useModal();
 
   return (
@@ -17,8 +20,11 @@ function CommentCard({ comment, setComments }) {
         <p>{comment.post.title}</p>
       </a>
       <p>{formatDate(comment.createdAt, 'dd MMM Y hh:mm a')}</p>
+      {comment.updatedAt ? <p>Edited at {formatDate(comment.updatedAt, 'dd MMM Y hh:mm a')}</p> : null}
+      <button onClick={() => setShowEditForm(true)}>Edit</button>
       <DeleteButton endpoint={'comments'} itemId={comment._id} setItems={setComments} setModalOptions={setModalOptions} />
       <WarningModal options={modalOptions} setOptions={setModalOptions} message="Delete Comment?" />
+      <CommentForm comment={comment} show={showEditForm}setShow={setShowEditForm} setComments={setComments} />
     </div>
   );
 }
@@ -32,6 +38,7 @@ CommentCard.propTypes = {
     }),
     text: PT.string.isRequired,
     createdAt: PT.string.isRequired,
+    updatedAt: PT.string,
   }),
   setComments: PT.func.isRequired,
 }

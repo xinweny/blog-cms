@@ -40,13 +40,7 @@ function PostForm({ post }) {
         return;
       }
 
-      const data = { author: user._id, title, text, tags, published }
-
-      if (post) {
-        data.updatedAt = new Date();
-      } else {
-        data.createdAt = new Date();
-      }
+      const data = { author: user._id, title, text, tags, published };
 
       const res = await sendReq(
         post ? 'PUT' : 'POST',

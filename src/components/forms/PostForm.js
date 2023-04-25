@@ -93,7 +93,7 @@ function PostForm({ post }) {
         onEditorChange={handleChange}
         required
       />
-      <label>Tags</label>
+      <label>Tags ({tags.length})</label>
       <div>
         {tags.map((tag, i) => (
           <TagInput key={tag} tag={tag} setTags={setTags} index={i} />

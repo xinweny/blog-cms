@@ -4,17 +4,18 @@ import { Editor } from '@tinymce/tinymce-react';
 import { useNavigate } from 'react-router-dom';
 
 import tinymceConfig from '../../config/tinyMCE';
-import { sendReq, getStorageAuth, sanitize } from '../../utils/helpers';
+import { sendReqMultipart, getStorageAuth, sanitize } from '../../utils/helpers';
 
 function PostForm({ post }) {
   const editorRef = useRef(null);
 
-  const { user, token } = getStorageAuth();
+  const { token } = getStorageAuth();
 
   const [title, setTitle] = useState(post ? post.title : '');
   const [text, setText] = useState('');
   const [tags, setTags] = useState(post ? post.tags : []);
   const [published, setPublished] = useState(post ? post.published : false);
+  const [image, setImage] = useState(post ? post.imgUrl : null);
   const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
@@ -40,18 +41,24 @@ function PostForm({ post }) {
         return;
       }
 
-      const data = { author: user._id, title, text, tags, published };
+      const data = new FormData();
+      data.append('title', title);
+      data.append('text', text);
+      tags.forEach(tag => data.append('tags', tag));
+      data.append('published', published);
+      if (image) data.append('imgFile', image);
 
-      const res = await sendReq(
+      const res = await sendReqMultipart(
         post ? 'PUT' : 'POST',
         post ? `posts/${post._id}` : 'posts',
         data,
         token,
       );
 
+
       const json = await res.json();
 
-      if (res.status === 200) {
+      if (res.ok) {
         navigate('/');
       } else {
         const message = json.error
@@ -92,6 +99,16 @@ function PostForm({ post }) {
         onChange={e => setTags(e.target.value.split(' '))}
         placeholder="food cooking healthy"
       />
+      <label htmlFor="imgFile">Image</label>
+      <input
+        type="file"
+        id="imgFile"
+        multiple={false}
+        onChange={e => setImage(e.target.files[0])}
+      />
+      {image ? (
+        <img src={URL.createObjectURL(image)} alt={image.name} />
+      ) : null}
       <label htmlFor="published">Publish?</label>
       <input
         type="checkbox"
@@ -111,6 +128,7 @@ PostForm.propTypes = {
     text: PT.string.isRequired,
     tags: PT.arrayOf(PT.string),
     published: PT.bool.isRequired,
+    imgUrl: PT.string,
   }),
 };
 

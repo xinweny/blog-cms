@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { sendReq } from '../utils/helpers';
+import { sendReqJson } from '../utils/helpers';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -14,7 +14,7 @@ function LoginPage() {
     e.preventDefault();
 
     try {
-      const res = await sendReq('POST', 'login', { email, password });
+      const res = await sendReqJson('POST', 'login', { email, password });
 
       const json = await res.json();
 

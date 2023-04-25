@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes as PT } from 'prop-types';
 
-import { sendReq, getStorageAuth } from '../../utils/helpers';
+import { sendReqJson, getStorageAuth } from '../../utils/helpers';
 
 function TogglePublishButton({
   post,
@@ -11,7 +11,7 @@ function TogglePublishButton({
 
   const handleUpdate = async () => {
     try {
-      const res = await sendReq(
+      const res = await sendReqJson(
         'PUT', `posts/${post._id}`,
         {
           published: !post.published,

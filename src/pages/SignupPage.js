@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { sendReq, saveDataAndTriggerStorage } from '../utils/helpers';
+import { sendReqJson, saveDataAndTriggerStorage } from '../utils/helpers';
 
 function SignupPage() {
   const [username, setUsername] = useState('');
@@ -21,7 +21,7 @@ function SignupPage() {
         return;
       }
 
-      const res = await sendReq('POST', 'register',
+      const res = await sendReqJson('POST', 'register',
       {
         email,
         username,
@@ -32,7 +32,7 @@ function SignupPage() {
       const json = await res.json();
 
       if (res.status === 200) {
-        const loginRes = await sendReq('POST', 'login', { email, password });
+        const loginRes = await sendReqJson('POST', 'login', { email, password });
 
         const loginJson = await loginRes.json();
         saveDataAndTriggerStorage(loginJson);

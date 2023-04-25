@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes as PT } from 'prop-types';
 
-import { sendReq, getStorageAuth } from '../../utils/helpers';
+import { sendReqJson, getStorageAuth } from '../../utils/helpers';
 
 function DeleteButton({
   endpoint,
@@ -13,7 +13,7 @@ function DeleteButton({
 
   const handleDelete = async () => {
     try {
-      const res = await sendReq('DELETE', `${endpoint}/${itemId}`, {}, token);
+      const res = await sendReqJson('DELETE', `${endpoint}/${itemId}`, {}, token);
 
       if (res.status === 200) {
         setItems(prev => prev.filter(item => item._id !== itemId));

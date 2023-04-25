@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { PropTypes as PT } from 'prop-types';
 
-import { sendReq, getStorageAuth } from '../../utils/helpers';
+import { sendReqJson, getStorageAuth } from '../../utils/helpers';
 
 function CommentForm({ comment, show, setShow, setComments }) {
   const { user, token } = getStorageAuth();
@@ -12,7 +12,7 @@ function CommentForm({ comment, show, setShow, setComments }) {
     e.preventDefault();
 
     try {
-      const res = await sendReq('PUT', `comments/${comment._id}`, { text }, token);
+      const res = await sendReqJson('PUT', `comments/${comment._id}`, { text }, token);
 
       const json = await res.json();
 

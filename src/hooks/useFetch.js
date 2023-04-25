@@ -6,8 +6,8 @@ const useFetch = (query, initVal = null, deps = []) => {
   useEffect(() => {
     if (query) {
       fetch(`https://blog-api-5lv9.onrender.com/api/${query}`)
-      .then(res => res.json())
-      .then(json => setData(json.data));
+        .then(res => res.json())
+        .then(json => setData(json.data));
     }
   }, deps);
 

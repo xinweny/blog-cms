@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import tinymceConfig from '../../config/tinyMCE';
 import { sendReqMultipart, getStorageAuth, sanitize } from '../../utils/helpers';
 
+import TagInput from '../ui/TagInput';
+
 function PostForm({ post }) {
   const editorRef = useRef(null);
 
@@ -44,9 +46,9 @@ function PostForm({ post }) {
       const data = new FormData();
       data.append('title', title);
       data.append('text', text);
-      tags.forEach(tag => data.append('tags', tag));
       data.append('published', published);
       if (image) data.append('imgFile', image);
+      data.append('tags', JSON.stringify(tags.filter(tag => tag.length > 0)));
 
       const res = await sendReqMultipart(
         post ? 'PUT' : 'POST',
@@ -91,14 +93,13 @@ function PostForm({ post }) {
         onEditorChange={handleChange}
         required
       />
-      <label htmlFor="tags">Tags</label>
-      <input
-        type="text"
-        id="tags"
-        value={tags.join(' ')}
-        onChange={e => setTags(e.target.value.split(' '))}
-        placeholder="food cooking healthy"
-      />
+      <label>Tags</label>
+      <div>
+        {tags.map((tag, i) => (
+          <TagInput key={tag} tag={tag} setTags={setTags} index={i} />
+        ))}
+        <button type="button" onClick={() => setTags(prev => [...prev, ''])}>+</button>
+      </div>
       <label htmlFor="imgFile">Image</label>
       <input
         type="file"
@@ -107,7 +108,7 @@ function PostForm({ post }) {
         onChange={e => setImage(e.target.files[0])}
       />
       {image ? (
-        <img src={URL.createObjectURL(image)} alt={image.name} />
+        <img src={typeof image === 'string' ? post.imgUrl : URL.createObjectURL(image)} />
       ) : null}
       <label htmlFor="published">Publish?</label>
       <input

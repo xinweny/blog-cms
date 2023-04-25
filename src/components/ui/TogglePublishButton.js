@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes as PT } from 'prop-types';
 
-import { sendReqJson, getStorageAuth } from '../../utils/helpers';
+import { sendReqMultipart, getStorageAuth } from '../../utils/helpers';
 
 function TogglePublishButton({
   post,
@@ -11,15 +11,17 @@ function TogglePublishButton({
 
   const handleUpdate = async () => {
     try {
-      const res = await sendReqJson(
+      const data = new FormData();
+      data.append('title', post.title);
+      data.append('text', post.text);
+      data.append('tags', JSON.stringify(post.tags));
+      data.append('published', !post.published);
+
+      const res = await sendReqMultipart(
         'PUT', `posts/${post._id}`,
-        {
-          published: !post.published,
-          title: post.title,
-          text: post.text,
-          tags: post.tags,
-        },
-        token);
+        data,
+        token,
+      );
 
       const json = await res.json();
 

@@ -1,12 +1,37 @@
 .post-form {
   width: 75vw;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-field label {
+  font-size: small;
+}
+
+.form-field.title-field {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0px;
+}
+
+#title {
+  padding: 8px;
+  font-weight: bold;
+  align-self: stretch;
 }
 
 .tags-field {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  font-weight: bold;
+  font-size: small;
 }
 
 .tags-label {
@@ -26,4 +51,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
+}
+
+.submit-btn {
+  align-self: center;
 }

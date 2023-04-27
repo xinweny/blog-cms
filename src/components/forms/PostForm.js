@@ -80,24 +80,16 @@ function PostForm({ post }) {
 
   return (
     <form className="post-form" onSubmit={handleSubmit}>
-      <label htmlFor="title">Title</label>
-      <input
-        type="text"
-        id="title"
-        value={title}
-        onChange={e => setTitle(e.target.value)}
-        required
-      />
-      <label htmlFor="imgFile">Image</label>
-      <input
-        type="file"
-        id="imgFile"
-        multiple={false}
-        onChange={e => setImage(e.target.files[0])}
-      />
-      {image ? (
-        <img src={typeof image === 'string' ? post.imgUrl : URL.createObjectURL(image)} />
-      ) : null}
+      <div className="form-field title-field">
+        <label htmlFor="title">Title</label>
+        <input
+          type="text"
+          id="title"
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+          required
+        />
+      </div>
       <Editor
         apiKey={process.env.REACT_APP_TINYMCE_API_KEY}
         onInit={(e, editor) => editorRef.current = editor}
@@ -119,15 +111,26 @@ function PostForm({ post }) {
           ))}
         </div>
       </div>
-      <label htmlFor="published">Publish?</label>
-      <input
-        type="checkbox"
-        id="published"
-        checked={published}
-        onChange={() => setPublished(prev => !prev)}
-      />
+      <div className="form-field">
+        <label htmlFor="imgFile">Image</label>
+        <input
+          type="file"
+          id="imgFile"
+          multiple={false}
+          onChange={e => setImage(e.target.files[0])}
+        />
+      </div>
+      <div className="form-field">
+        <label htmlFor="published">Publish?</label>
+        <input
+          type="checkbox"
+          id="published"
+          checked={published}
+          onChange={() => setPublished(prev => !prev)}
+        />
+      </div>
       <p className="form-error">{errorMsg}</p>
-      <button type="Submit">{post ? 'Save' : 'Create' }</button>
+      <button className="submit-btn" type="Submit">{post ? 'Save' : 'Create' }</button>
     </form>
   );
 }

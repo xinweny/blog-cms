@@ -1,0 +1,29 @@
+.post-form {
+  width: 75vw;
+}
+
+.tags-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-weight: bold;
+}
+
+.tags-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tags-label button {
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.tag-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}

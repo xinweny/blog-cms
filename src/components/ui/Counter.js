@@ -13,7 +13,7 @@ function Counter({ children, number }) {
 }
 
 Counter.propTypes = {
-  children: PT.elementType,
+  children: PT.element.isRequired,
   number: PT.number.isRequired,
 }
 

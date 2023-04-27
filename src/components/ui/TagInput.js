@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { PropTypes as PT } from 'prop-types';
 
+import '../../styles/TagInput.css';
+
 function TagInput({ tag, setTags, index }) {
   const [tagValue, setTagValue] = useState(tag || '');
 
   return (
-    <div>
+    <div className="tag-input">
       <input
         type="text"
         id={`tag-${index}`}

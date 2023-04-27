@@ -2,11 +2,15 @@ import React, { useRef, useState, useEffect } from 'react';
 import { PropTypes as PT } from 'prop-types';
 import { Editor } from '@tinymce/tinymce-react';
 import { useNavigate } from 'react-router-dom';
+import uniqid from 'uniqid';
 
 import tinymceConfig from '../../config/tinyMCE';
 import { sendReqMultipart, getStorageAuth, sanitize } from '../../utils/helpers';
 
 import TagInput from '../ui/TagInput';
+import Counter from '../ui/Counter';
+
+import '../../styles/PostForm.css';
 
 function PostForm({ post }) {
   const editorRef = useRef(null);
@@ -75,7 +79,7 @@ function PostForm({ post }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="post-form" onSubmit={handleSubmit}>
       <label htmlFor="title">Title</label>
       <input
         type="text"
@@ -84,22 +88,6 @@ function PostForm({ post }) {
         onChange={e => setTitle(e.target.value)}
         required
       />
-      <p className="form-error">{errorMsg}</p>
-      <Editor
-        apiKey={process.env.REACT_APP_TINYMCE_API_KEY}
-        onInit={(e, editor) => editorRef.current = editor}
-        init={tinymceConfig}
-        value={text}
-        onEditorChange={handleChange}
-        required
-      />
-      <label>Tags ({tags.length})</label>
-      <div>
-        {tags.map((tag, i) => (
-          <TagInput key={tag} tag={tag} setTags={setTags} index={i} />
-        ))}
-        <button type="button" onClick={() => setTags(prev => [...prev, ''])}>+</button>
-      </div>
       <label htmlFor="imgFile">Image</label>
       <input
         type="file"
@@ -110,6 +98,27 @@ function PostForm({ post }) {
       {image ? (
         <img src={typeof image === 'string' ? post.imgUrl : URL.createObjectURL(image)} />
       ) : null}
+      <Editor
+        apiKey={process.env.REACT_APP_TINYMCE_API_KEY}
+        onInit={(e, editor) => editorRef.current = editor}
+        init={tinymceConfig}
+        value={text}
+        onEditorChange={handleChange}
+        required
+      />
+      <div className="tags-field">
+        <div className="tags-label">
+          <Counter number={tags.length}>
+            <label>Tags</label>
+          </Counter>
+          <button type="button" onClick={() => setTags(prev => [...prev, ''])}>+</button>
+        </div>
+        <div className="tag-inputs">
+          {tags.map((tag, i) => (
+            <TagInput key={uniqid()} tag={tag} setTags={setTags} index={i} />
+          ))}
+        </div>
+      </div>
       <label htmlFor="published">Publish?</label>
       <input
         type="checkbox"
@@ -117,6 +126,7 @@ function PostForm({ post }) {
         checked={published}
         onChange={() => setPublished(prev => !prev)}
       />
+      <p className="form-error">{errorMsg}</p>
       <button type="Submit">{post ? 'Save' : 'Create' }</button>
     </form>
   );

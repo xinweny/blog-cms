@@ -4,6 +4,7 @@ import useFetch from '../hooks/useFetch';
 import { getStorageAuth } from '../utils/helpers';
 
 import CommentCard from '../components/ui/CommentCard';
+import Counter from '../components/ui/Counter';
 
 function CommentsPage() {
   const { user } = getStorageAuth();
@@ -12,10 +13,14 @@ function CommentsPage() {
 
   return (
     <main>
-      <h3>Comments ({comments.length})</h3>
-      {comments.map(comment => (
-        <CommentCard key={comment._id} comment={comment} setComments={setComments} />
-      ))}
+      <Counter number={comments.length}>
+        <h3>Comments</h3>
+      </Counter>
+      {comments.length > 0
+        ? comments.map(comment =>
+          <CommentCard key={comment._id} comment={comment} setComments={setComments} />
+        )
+        : <p>No comments to show.</p>}
     </main>
   );
 }

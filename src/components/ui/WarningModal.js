@@ -1,14 +1,18 @@
 import React from 'react';
 import { PropTypes as PT } from 'prop-types';
 
+import '../../styles/WarningModal.css';
+
 function WarningModal({ options, setOptions, message }) {
   if (!options.show) return null;
   
   return (
-    <div>
+    <div className="warning-modal">
       <p>{message}</p>
-      <button onClick={options.action}>Yes</button>
-      <button onClick={() => setOptions(prev => ({ ...prev, show: false }))}>No</button>
+      <div className="confirm-btns">
+        <button onClick={options.action}>Yes</button>
+        <button onClick={() => setOptions(prev => ({ ...prev, show: false }))}>No</button>
+      </div>
     </div>
   );
 }

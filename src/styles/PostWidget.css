@@ -5,6 +5,12 @@
   align-items: center;
 }
 
+.widget {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .widgets {
   width: 100%;
   display: grid;

@@ -1,0 +1,14 @@
+.lc-counts {
+  display: flex;
+  gap: 8px;
+}
+
+.lc-counts div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.lc-counts img {
+  width: 20px;
+}

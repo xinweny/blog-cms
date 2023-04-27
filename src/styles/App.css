@@ -7,8 +7,10 @@
   overflow-x: hidden;
 }
 
-main {
+.main-content {
   flex: auto;
+  display: grid;
+  grid-template-columns: auto 1fr;
 }
 
 .font-small {

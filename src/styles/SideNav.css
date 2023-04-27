@@ -1,0 +1,31 @@
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 8px 16px;
+}
+
+.side-nav button {
+  align-self: flex-start;
+  border: none;
+  background-color: transparent;
+}
+
+.side-nav img {
+  width: 25px;
+  height: auto;
+}
+
+.side-nav nav {
+  font-size: small;
+}
+
+.side-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.side-nav li {
+  list-style-type: none;
+}

@@ -3,15 +3,15 @@ import React from 'react';
 import { getStorageAuth } from '../utils/helpers';
 
 import PostWidget from '../components/ui/PostWidget';
-import CommentWidget from './CommentsPage';
+
+import '../styles/DashboardPage.css';
 
 function DashboardPage() {
   const { user } = getStorageAuth();
 
   return (
-    <main>
+    <main className="dashboard-page">
       <PostWidget userId={user.id} />
-      <CommentWidget userId={user.id} />
     </main>
   );
 }

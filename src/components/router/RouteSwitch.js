@@ -19,18 +19,20 @@ function RouteSwitch() {
   return (
     <BrowserRouter>
       <Header />
-      {user && <SideNav />}
-      <Routes>
-        <Route
-          path="/"
-          element={user ? <DashboardPage /> : <LandingPage />}
-        />
-        <Route path="/comments" element={<CommentsPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/posts/new" element={<PostFormPage />} />
-        <Route path="/posts/:id/edit" element={<PostFormPage />} />
-      </Routes>
+      <div className="main-content">
+        {user && <SideNav />}
+        <Routes>
+          <Route
+            path="/"
+            element={user ? <DashboardPage /> : <LandingPage />}
+          />
+          <Route path="/comments" element={<CommentsPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/posts/new" element={<PostFormPage />} />
+          <Route path="/posts/:id/edit" element={<PostFormPage />} />
+        </Routes>
+      </div>
       <Footer />
     </BrowserRouter>
   );

@@ -12,16 +12,21 @@ import WarningModal from './WarningModal';
 
 import verticalDots from '../../assets/dots-3-vertical.svg';
 import placeholderImg from '../../assets/thumbnail-placeholder.png';
+import crossIcon from '../../assets/cross.svg';
 
 import '../../styles/PostCard.css';
 
 function PostCard({ post, setPosts }) {
   const [showOptions, setShowOptions] = useState(false);
-  const [modalOptions, setModalOptions] = useModal();
+  const [modalOptions, setModalOptions] = useModal({
+    show: false,
+  });
 
   return (
     <div className="post-card">
-      <div className="card-content">
+      <div className="card-content" style={{
+        opacity: modalOptions.show ? '30%' : '100%',
+      }}>
         <div className="post-info">
           <div>
             {post.published
@@ -42,12 +47,22 @@ function PostCard({ post, setPosts }) {
           <img src={verticalDots} alt="More actions" />
         </button>
       </div>
-      <WarningModal options={modalOptions} setOptions={setModalOptions} message="Delete Post?" />
-      {showOptions && <div className="post-actions">
+      <WarningModal
+        options={modalOptions}
+        setShowOptions={setShowOptions}
+        setOptions={setModalOptions}
+        message="Delete Post?"
+      />
+      {showOptions && !modalOptions.show && <div className="post-actions">
+        <div>
           <Link to={`posts/${post._id}/edit`}>Edit</Link>
           <TogglePublishButton post={post} setPosts={setPosts} />
           <DeleteButton endpoint={'posts'} itemId={post._id} setItems={setPosts} setModalOptions={setModalOptions} />
-        </div>}
+        </div>
+        <button className="close-menu-btn" onClick={() => setShowOptions(false)}>
+          <img src={crossIcon} alt="Close menu" />
+        </button>
+      </div>}
     </div>
   );
 }

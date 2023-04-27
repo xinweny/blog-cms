@@ -3,7 +3,12 @@ import { PropTypes as PT } from 'prop-types';
 
 import '../../styles/WarningModal.css';
 
-function WarningModal({ options, setOptions, message }) {
+function WarningModal({
+  options,
+  setOptions,
+  setShowOptions,
+  message,
+}) {
   if (!options.show) return null;
   
   return (
@@ -11,7 +16,10 @@ function WarningModal({ options, setOptions, message }) {
       <p>{message}</p>
       <div className="confirm-btns">
         <button onClick={options.action}>Yes</button>
-        <button onClick={() => setOptions(prev => ({ ...prev, show: false }))}>No</button>
+        <button onClick={() => {
+          setOptions(prev => ({ ...prev, show: false }));
+          setShowOptions(false);
+        }}>No</button>
       </div>
     </div>
   );
@@ -23,6 +31,7 @@ WarningModal.propTypes = {
     action: PT.func,
   }),
   setOptions: PT.func.isRequired,
+  setShowOptions: PT.func.isRequired,
   message: PT.string.isRequired,
 };
 

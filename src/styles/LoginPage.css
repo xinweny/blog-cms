@@ -1,0 +1,30 @@
+.login-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.login-form {
+  max-width: 500px;
+  width: 75vw;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-form > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form > button {
+  align-self: center;
+  margin-top: 16px;
+}
+
+.login-form .form-error {
+  font-size: small;
+  text-align: center;
+}

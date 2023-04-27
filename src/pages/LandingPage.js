@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import '../styles/LandingPage.css';
+
 function LandingPage() {
   return (
     <main>
-      <div>
+      <div className="landing-banner">
         <h2>BlogTree</h2>
         <p>Introducing BlogTree CMS, the easiest way to create and manage your stories.</p>
         <br />

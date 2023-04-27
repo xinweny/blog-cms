@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { sendReqJson, saveDataAndTriggerStorage } from '../utils/helpers';
 
+import '../styles/SignupPage.css';
+
 function SignupPage() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -50,30 +52,36 @@ function SignupPage() {
   };
 
   return (
-    <main>
+    <main className="signup-page">
       <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="signup-form" onSubmit={handleSubmit}>
         <p className="form-error">{errorMsg}</p>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text" name="username" id="username" required
-          onChange={e => setUsername(e.target.value)}
-        />
-        <label htmlFor="email">Email</label>
-        <input
-          type="email" name="email" id="email" required
-          onChange={e => setEmail(e.target.value)}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password" name="password" id="password" required
-          onChange={e => setPassword(e.target.value)}
-        />
-        <input
-          type="password" name="confirm_password" id="confirm_password" required
-          onChange={e => setConfirmPassword(e.target.value)}
-          placeholder="Confirm password"
-        />
+        <div>
+          <label htmlFor="username">Username</label>
+          <input
+            type="text" name="username" id="username" required
+            onChange={e => setUsername(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="email">Email</label>
+          <input
+            type="email" name="email" id="email" required
+            onChange={e => setEmail(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Password</label>
+          <input
+            type="password" name="password" id="password" required
+            onChange={e => setPassword(e.target.value)}
+          />
+          <input
+            type="password" name="confirm_password" id="confirm_password" required
+            onChange={e => setConfirmPassword(e.target.value)}
+            placeholder="Confirm password"
+          />
+        </div>
         <button type="submit">Submit</button>
       </form>
     </main>

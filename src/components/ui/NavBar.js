@@ -7,13 +7,13 @@ import LogoutButton from './LogoutButton';
 function NavBar({ user }) {
   return (
     <nav>
+      <a href="">Browse Stories</a>
       {user
       ? <LogoutButton />
       : <>
         <Link to="/login">Login</Link>
         <Link to="/signup">Sign Up</Link>
       </>}
-      <a href="">Browse Stories</a>
     </nav>
   );
 }

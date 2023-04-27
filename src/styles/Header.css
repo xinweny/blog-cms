@@ -1,0 +1,30 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+}
+
+.site-branding {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.site-branding img {
+  width: 60px;
+  height: 60px;
+}
+
+.header-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}

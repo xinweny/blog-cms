@@ -7,6 +7,7 @@ function SideNav() {
       <ul>
         <li><Link to="/">Dashboard</Link></li>
         <li><Link to="/posts/new">Create Post</Link></li>
+        <li><Link to="/comments">Manage Comments</Link></li>
       </ul>
     </nav>
   );

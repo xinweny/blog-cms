@@ -1,4 +1,24 @@
-* {
-  padding: 0;
-  margin: 0;
+.app {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  max-width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+main {
+  flex: auto;
+}
+
+.font-small {
+  font-size: small;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.form-error {
+  color: red;
 }

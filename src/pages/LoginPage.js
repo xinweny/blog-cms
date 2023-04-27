@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { sendReqJson } from '../utils/helpers';
 
+import '../styles/LoginPage.css';
+
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,20 +34,24 @@ function LoginPage() {
   };
 
   return (
-    <main>
+    <main className="login-page">
       <h2>Log In</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="login-form" onSubmit={handleSubmit}>
         <p className="form-error">{errorMsg}</p>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email" name="email" id="email" required
-          onChange={e => setEmail(e.target.value)}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password" name="password" id="password" required
-          onChange={e => setPassword(e.target.value)}
-        />
+        <div className="form-field">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email" name="email" id="email" required
+            onChange={e => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="form-field">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password" name="password" id="password" required
+            onChange={e => setPassword(e.target.value)}
+          />
+        </div>
         <button type="submit">Submit</button>
       </form>
     </main>

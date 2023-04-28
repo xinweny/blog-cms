@@ -21,8 +21,8 @@ function PostWidget({ userId }) {
 
   return (
     <div className="post-widget">
-      <Counter number={posts.length}>
-        <h3>Articles</h3>
+      <Counter number={posts.length} clsName="font-large">
+        <h2>Articles</h2>
       </Counter>
       <div className="widgets">
         <div className="widget">
@@ -35,7 +35,7 @@ function PostWidget({ userId }) {
           ))
           : <p>No articles to show.</p>}
         </div>
-        <div>
+        <div className="widget">
           <Counter number={unpublished.length}>
             <p className="widget-label">Unpublished</p>
           </Counter>

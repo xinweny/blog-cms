@@ -111,7 +111,7 @@ function PostForm({ post }) {
           ))}
         </div>
       </div>
-      <div className="form-field">
+      <div className="form-field img-field">
         <label htmlFor="imgFile">Image</label>
         <input
           type="file"

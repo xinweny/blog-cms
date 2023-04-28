@@ -14,11 +14,23 @@
 }
 
 .font-small {
-  font-size: small;
+  font-size: min(2.5vw, 14px);
+}
+
+.font-large {
+  font-size: min(3vw, 20px);
 }
 
 .italic {
   font-style: italic;
+}
+
+.form-field label {
+  align-self: flex-start;
+}
+
+.form-field input {
+  align-self: stretch;
 }
 
 .form-error {

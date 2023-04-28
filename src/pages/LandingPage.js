@@ -13,7 +13,9 @@ function LandingPage() {
           <br />
           <p>With BlogTree, you can write and manage your articles in a few clicks. Our easy-to-use platform allows you to create and customize posts, and engage with your audience. Start writing and inspire your audience today.</p>
         </div>
-        <Link to="/signup">Unleash Your Creativity</Link>
+        <div className="landing-btn">
+          <Link to="/signup">Unleash Your Creativity</Link>
+        </div>
       </div>
     </main>
   );

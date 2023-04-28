@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: rgb(180, 233, 255);
 }
 
 .landing-banner {
@@ -14,4 +15,16 @@
 
 .landing-banner > div {
   text-align: center;
+}
+
+.landing-btn {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  font-weight: bold;
+  color: white;
+  background-color: navy;
+  border-radius: 8px;
 }

@@ -3,9 +3,9 @@ import { PropTypes as PT } from 'prop-types';
 
 import '../../styles/Counter.css';
 
-function Counter({ children, number }) {
+function Counter({ children, number, clsName }) {
   return (
-    <div className="counter">
+    <div className={`counter ${clsName || ''}`}>
       {children}
       <div className="counter-number">{number}</div>
     </div>
@@ -15,6 +15,7 @@ function Counter({ children, number }) {
 Counter.propTypes = {
   children: PT.element.isRequired,
   number: PT.number.isRequired,
+  clsName: PT.string,
 }
 
 export default Counter;

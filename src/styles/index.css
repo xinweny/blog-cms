@@ -3,6 +3,51 @@
   margin: 0;
 }
 
+@font-face {
+  font-family: 'Charter';
+  src: url('../assets/fonts/Charter\ Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Charter';
+  src: url('../assets/fonts/Charter\ Bold.ttf');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Charter';
+  src: url('../assets/fonts/Charter\ Italic.ttf');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Charter';
+  src: url('../assets/fonts/Charter\ Bold\ Italic.ttf');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'CircularLight';
+  src: url('../assets/fonts/CircularStd-Light.otf');
+}
+
+@font-face {
+  font-family: 'Circular';
+  src: url('../assets/fonts/CircularStd-Book.otf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Circular';
+  src: url('../assets/fonts/CircularStd-Bold.otf');
+  font-weight: bold;
+}
+
+body {
+  font-family: 'Circular', sans-serif;
+}
+
 a {
   text-decoration: none;
 }
@@ -11,6 +56,18 @@ a, a:visited {
   color: inherit;
 }
 
+button {
+  font-family: 'Circular', sans-serif;
+  background-color: transparent;
+  border: none;
+}
+
 button:hover {
   cursor: pointer;
+}
+
+textarea, input {
+  border: 2px solid lightgray;
+  border-radius: 8px;
+  padding: 4px 8px;
 }

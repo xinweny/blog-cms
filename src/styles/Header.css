@@ -3,6 +3,8 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 8px 16px;
+  border-bottom: 1px solid black;
+  background-color: rgb(200, 225, 255);
 }
 
 .site-branding {
@@ -12,8 +14,8 @@ header {
 }
 
 .site-branding img {
-  width: 60px;
-  height: 60px;
+  height: auto;
+  width: min(7.5vw, 60px);
 }
 
 .header-links {
@@ -22,9 +24,19 @@ header {
   gap: 16px;
 }
 
+.logout-button {
+  font-size: medium;
+}
+
 header nav {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+}
+
+@media screen and (max-width: 600px) {
+  .site-branding h1 {
+    display: none;
+  }
 }

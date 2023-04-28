@@ -11,7 +11,7 @@ function LogoutButton() {
   };
 
   return (
-    <button onClick={handleLogout}>Sign Out</button>
+    <button className="logout-button" onClick={handleLogout}>Sign Out</button>
   )
 }
 

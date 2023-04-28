@@ -70,7 +70,7 @@ function SignupPage() {
             onChange={e => setEmail(e.target.value)}
           />
         </div>
-        <div>
+        <div className="password-field">
           <label htmlFor="password">Password</label>
           <input
             type="password" name="password" id="password" required

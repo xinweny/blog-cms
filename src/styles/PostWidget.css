@@ -5,12 +5,6 @@
   align-items: center;
 }
 
-.widget {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
 .widgets {
   width: 100%;
   display: grid;
@@ -18,7 +12,23 @@
   gap: 24px;
 }
 
+.widgets .counter {
+  padding-bottom: 8px;
+  border-bottom: 1px solid black;
+}
+
+.widget {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.widget > p {
+  text-align: center;
+}
+
 .widget-label {
+  font-size: min(2.5vw, 18px);
   text-align: center;
   font-weight: bold;
 }

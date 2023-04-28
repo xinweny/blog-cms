@@ -20,7 +20,7 @@ function RouteSwitch() {
     <BrowserRouter>
       <Header />
       <div className="main-content">
-        {user && <SideNav />}
+        {user ? <SideNav /> : <div></div>}
         <Routes>
           <Route
             path="/"

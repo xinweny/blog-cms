@@ -3,6 +3,8 @@ import { PropTypes as PT } from 'prop-types';
 
 import { sendReqJson, getStorageAuth } from '../../utils/helpers';
 
+import '../../styles/CommentForm.css';
+
 function CommentForm({ comment, show, setShow, setComments }) {
   const { user, token } = getStorageAuth();
 
@@ -19,6 +21,7 @@ function CommentForm({ comment, show, setShow, setComments }) {
       if (res.status === 200) {
         const updatedComment = json.data;
         updatedComment.author = { _id: user.id, username: user.username };
+        updatedComment.post = { _id: comment.post._id, title: comment.post.title };
 
         setComments(prev => prev.map(c => {
           if (c._id === comment._id) return updatedComment;
@@ -34,8 +37,7 @@ function CommentForm({ comment, show, setShow, setComments }) {
   if (!show) return null;
 
   return (
-    <div>
-      <h3>Edit Comment</h3>
+    <div className="comment-form">
       <form onSubmit={handleSubmit}>
         <textarea
           id="comment-text"
@@ -51,7 +53,14 @@ function CommentForm({ comment, show, setShow, setComments }) {
 }
 
 CommentForm.propTypes = {
-  comment: PT.shape({ _id: PT.string.isRequired, text: PT.string.isRequired }),
+  comment: PT.shape({
+    _id: PT.string.isRequired,
+    text: PT.string.isRequired,
+    post: PT.shape({
+      _id: PT.string.isRequired,
+      title: PT.string.isRequired,
+    }),
+  }),
   show: PT.bool.isRequired,
   setShow: PT.func.isRequired,
   setComments: PT.func.isRequired,

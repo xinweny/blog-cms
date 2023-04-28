@@ -21,11 +21,14 @@
 
 .post-info > div:first-child {
   flex: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .post-card-title {
   font-weight: bold;
-  font-size: min(1.2em, 2vw);
+  font-size: min(1.2em, 3vw);
 }
 
 .post-info .lc-counts {

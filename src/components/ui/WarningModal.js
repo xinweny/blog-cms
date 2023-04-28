@@ -6,7 +6,6 @@ import '../../styles/WarningModal.css';
 function WarningModal({
   options,
   setOptions,
-  setShowOptions,
   message,
 }) {
   if (!options.show) return null;
@@ -18,7 +17,6 @@ function WarningModal({
         <button onClick={options.action}>Yes</button>
         <button onClick={() => {
           setOptions(prev => ({ ...prev, show: false }));
-          setShowOptions(false);
         }}>No</button>
       </div>
     </div>
@@ -31,7 +29,6 @@ WarningModal.propTypes = {
     action: PT.func,
   }),
   setOptions: PT.func.isRequired,
-  setShowOptions: PT.func.isRequired,
   message: PT.string.isRequired,
 };
 

@@ -1,0 +1,29 @@
+.comment-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  display: flex;
+  gap: 4px;
+  background-color: white;
+}
+
+.comment-form form {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.comment-form form button {
+  align-self: center;
+  padding: 0px 4px;
+  border-radius: 2px;
+  border: 1px solid navy;
+  color: navy;
+}
+
+.comment-form > button {
+  align-self: flex-start;
+}

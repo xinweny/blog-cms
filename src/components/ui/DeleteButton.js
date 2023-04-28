@@ -3,6 +3,8 @@ import { PropTypes as PT } from 'prop-types';
 
 import { sendReqJson, getStorageAuth } from '../../utils/helpers';
 
+import deleteIcon from '../../assets/trash-can.svg';
+
 function DeleteButton({
   endpoint,
   itemId,
@@ -27,7 +29,9 @@ function DeleteButton({
     <button onClick={() => setModalOptions({
       show: true,
       action: handleDelete,
-    })}>Delete</button>
+    })}>
+      <img src={deleteIcon} alt="Delete" />
+    </button>
   );
 }
 

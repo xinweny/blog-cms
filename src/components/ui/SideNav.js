@@ -15,9 +15,9 @@ function SideNav() {
       </button>
       <nav hidden={showNav}>
         <ul>
-          <li><Link to="/">Dashboard</Link></li>
-          <li><Link to="/posts/new">Create Post</Link></li>
-          <li><Link to="/comments">Manage Comments</Link></li>
+          <li><Link to="/" onClick={() => setShowNav(true)}>Dashboard</Link></li>
+          <li><Link to="/posts/new" onClick={() => setShowNav(true)}>Create Post</Link></li>
+          <li><Link to="/comments" onClick={() => setShowNav(true)}>Manage Comments</Link></li>
         </ul>
       </nav>
     </div>

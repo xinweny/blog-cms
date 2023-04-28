@@ -33,9 +33,9 @@ function PostCard({ post, setPosts }) {
               ? <a className="post-card-title" href={`https://BLOGCLIENTTBD/posts/${post._id}`}>
                 <p>{post.title}</p>
               </a> : <p className="post-card-title">{post.title}</p>}
-            <div className="card-dates">
-              <p>Created: {formatDate(post.createdAt, 'd MMM Y h:mm a')}</p>
-              {post.updatedAt ? <p>Last modified: {formatDate(post.updatedAt, 'd MMM Y h:mm a')}</p> : null}
+            <div className="card-dates font-medium">
+              <p>Created - {formatDate(post.createdAt, 'd MMM Y h:mm a')}</p>
+              {post.updatedAt ? <p>Last modified - {formatDate(post.updatedAt, 'd MMM Y h:mm a')}</p> : null}
             </div>
           </div>
           <LikeCommentCounts likes={post.likesCount} comments={post.commentsCount}/>

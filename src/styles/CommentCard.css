@@ -1,0 +1,28 @@
+.comment-card {
+  border-bottom: 1px solid black;
+  position: relative;
+  margin: 0px 24px;
+  padding: 12px 0px;
+}
+
+.comment-card-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment-text {
+  margin-bottom: 16px;
+}
+
+.comment-post, .comment-date {
+  color: rgb(100, 100, 100);
+}
+
+.comment-date {
+  font-family: 'CircularLight', sans-serif;
+}
+
+.comment-card .comment-card-btns img {
+  width: 20px;
+  height: auto;
+}

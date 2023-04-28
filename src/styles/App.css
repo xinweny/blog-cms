@@ -14,6 +14,10 @@
 }
 
 .font-small {
+  font-size: min(2.5vw, 12px);
+}
+
+.font-medium {
   font-size: min(2.5vw, 14px);
 }
 

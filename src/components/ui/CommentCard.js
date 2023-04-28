@@ -8,21 +8,37 @@ import DeleteButton from './DeleteButton';
 import WarningModal from './WarningModal';
 import CommentForm from '../forms/CommentForm';
 
+import editIcon from '../../assets/edit-pencil.svg';
+
+import '../../styles/CommentCard.css';
+
 function CommentCard({ comment, setComments }) {
   const [showEditForm, setShowEditForm] = useState(false);
 
   const [modalOptions, setModalOptions] = useModal();
 
   return (
-    <div>
-      <p>{comment.text}</p>
-      <a href={`https://BLOGCLIENTTBD/posts/${comment.post._id}`}>
-        <p>{comment.post.title}</p>
-      </a>
-      <p>{formatDate(comment.createdAt, 'dd MMM Y hh:mm a')}</p>
-      {comment.updatedAt ? <p>Edited at {formatDate(comment.updatedAt, 'dd MMM Y hh:mm a')}</p> : null}
-      <button onClick={() => setShowEditForm(true)}>Edit</button>
-      <DeleteButton endpoint={'comments'} itemId={comment._id} setItems={setComments} setModalOptions={setModalOptions} />
+    <div className="comment-card">
+      <div className="comment-card-content" style={{
+        opacity: showEditForm || modalOptions.show ? '30%' : '100%',
+      }}>
+        <div className="comment-info">
+          <p className="comment-text">{comment.text}</p>
+          <a href={`https://BLOGCLIENTTBD/posts/${comment.post._id}`} className="font-small comment-post">
+            <p>{comment.post.title}</p>
+          </a>
+          <p className="comment-date font-small">{comment.updatedAt
+            ? `${formatDate(comment.updatedAt, 'dd MMM Y hh:mm a')} (edited)`
+            : formatDate(comment.createdAt, 'dd MMM Y hh:mm a')}
+          </p>
+        </div>
+        <div className="comment-card-btns">
+          <button onClick={() => setShowEditForm(true)}>
+            <img src={editIcon} alt="Edit" />
+          </button>
+          <DeleteButton endpoint={'comments'} itemId={comment._id} setItems={setComments} setModalOptions={setModalOptions} />
+        </div>
+      </div>
       <WarningModal options={modalOptions} setOptions={setModalOptions} message="Delete Comment?" />
       <CommentForm comment={comment} show={showEditForm}setShow={setShowEditForm} setComments={setComments} />
     </div>

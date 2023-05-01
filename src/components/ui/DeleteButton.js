@@ -10,6 +10,7 @@ function DeleteButton({
   itemId,
   setItems,
   setModalOptions,
+  mode,
 }) {
   const { token } = getStorageAuth();
 
@@ -30,7 +31,8 @@ function DeleteButton({
       show: true,
       action: handleDelete,
     })}>
-      <img src={deleteIcon} alt="Delete" />
+      {mode === 'icon' && <img src={deleteIcon} alt="Delete" />}
+      {mode === 'text' && <p>Delete</p>}
     </button>
   );
 }
@@ -40,6 +42,7 @@ DeleteButton.propTypes = {
   itemId: PT.string.isRequired,
   setItems: PT.func.isRequired,
   setModalOptions: PT.func.isRequired,
+  mode: PT.string.isRequired,
 };
 
 export default DeleteButton;

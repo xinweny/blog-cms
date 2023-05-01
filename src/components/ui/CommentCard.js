@@ -36,7 +36,7 @@ function CommentCard({ comment, setComments }) {
           <button onClick={() => setShowEditForm(true)}>
             <img src={editIcon} alt="Edit" />
           </button>
-          <DeleteButton endpoint={'comments'} itemId={comment._id} setItems={setComments} setModalOptions={setModalOptions} />
+          <DeleteButton endpoint={'comments'} itemId={comment._id} setItems={setComments} setModalOptions={setModalOptions} mode="icon" />
         </div>
       </div>
       <WarningModal options={modalOptions} setOptions={setModalOptions} message="Delete Comment?" />

@@ -57,7 +57,7 @@ function PostCard({ post, setPosts }) {
         <div>
           <Link to={`posts/${post._id}/edit`}>Edit</Link>
           <TogglePublishButton post={post} setPosts={setPosts} />
-          <DeleteButton endpoint={'posts'} itemId={post._id} setItems={setPosts} setModalOptions={setModalOptions} />
+          <DeleteButton endpoint={'posts'} itemId={post._id} setItems={setPosts} setModalOptions={setModalOptions} mode="text" />
         </div>
         <button className="close-menu-btn" onClick={() => setShowOptions(false)}>
           <img src={crossIcon} alt="Close menu" />
